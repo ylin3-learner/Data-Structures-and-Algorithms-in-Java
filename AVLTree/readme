@@ -1,0 +1,107 @@
+AVL Tree raised by authors' first names start with A.V.L in 1963
+
+AVL Tree is a balanced tree of each node in tree.
+
+In order to keep the tree balanced, each root node's height is a need to be calculated.
+-- getNode() ; getHeight() when adding
+
+Balanced Tree Vs. Full Tree Vs. Complete Tree
+
+Balanced Tree: Math.abs(getHeight(node.left) - getHeight(node.right)) < 1
+
+Full tree: getHeight(node.left) == getHeight(node.right) && if(node.left != null && node.right != null)
+
+Complete Tree:
+
+if(node.left != null || node.right != null) {
+
+    Node node = if (node.left == null) ? new Node(node.left) : new Node(node.right);
+    int balancedFactor = Math.abs(getHeight(node.left) - getHeight(node.right)) < 1 ;
+    if (balancedFactor < 1)
+        return true;
+}
+
+Implementation: Based on BST (Binary-Search-Tree with mapping)
+
+class Prototype:
+public class AVLTree <K extends <K>, V> {
+
+    private class Node {
+
+        public K key;
+        public V value;
+        public Node left, right;
+        // height to calculate balancedFactor
+        public int height;
+
+        // constructor method with parameters
+        public Node(K key, V value) {
+            this.key = key;
+            this.value = value;
+            this.left = null;
+            this.right = null;
+            this.height = 1;
+        }
+    }
+
+    private Node root;
+    private int size;
+
+    public AVLTree() {
+        root = new Node();
+        size = 0;
+    }
+}
+
+Methods: add() - recursion ; getNode() ; remove() ; isEmpty() ; contains() ; getBalancedFactor()
+
+isEmpty() {return size == 0;}
+
+// return node's value by passing {key} in a tree with root node: {Node}
+private Node getNode(Node node, K key) {
+
+    if(node == null)
+        return null;
+
+    if(key.compareTo(node.left.key) < 0)
+        return getNode(node.left, key);
+    else if(key.compareTo(node.right.key) > 0)
+        return getNode(node.right, key);
+    else // node.key == key;
+        return node;
+}
+
+boolean contains(K key) {
+    return getNode(root, key) != null;
+}
+
+public void add(K key, V value) {
+    root = add(root, key, value);
+}
+
+private Node add(Node node, K key, V value) {
+
+    if (node == null) {
+        size ++;
+        return new Node(key ,value);
+    }
+
+    if(key.compareTo(node.key) < 0)
+        node.left = add(node.left, key, value);
+    else if (key.compareTo(node.key) > 0)
+        node.right = add(node.right, key, value);
+    else // key.compareTo(node.key) == 0
+        node.value = value;
+
+    node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
+
+    int balancedFactor = getBalancedFactor(node);
+
+    if(Math.abs(balancedFactor) > 1)
+        System.out.println("Unbalanced: " + balancedFactor);
+    return node;
+}
+
+private int getBalancedFactor(Node node) {
+    return getHeight(node.left) - getHeight(node.right);
+}

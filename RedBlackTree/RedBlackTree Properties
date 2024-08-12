@@ -1,0 +1,24 @@
+RedBlackTree Properties
+
+1. Every node is either red or black.
+[Reason] : Its definition
+2. The root is black.
+[Reason] :
+Let's imagine the root node of each tree, either one-key or two-key first.
+If we define the node connected with another node in one-key or two-key as red node.
+Then, the root node only have two types:
+1. one-key : the node itself will be black.
+2. two-key : its another node will be black.
+
+3. Every leaf [NIL] is black.
+[Reason] :
+4. If a node is red, then both its children is black.
+[Reason] :
+5. For each node, all simple paths from the node to descendant leaves contain the same number of black nodes.
+[Reason] :
+Because red black tree itself is equal to 23Tree. And 23Tree itself is a complete balanced tree as well,
+means the depth of each tree from the root node will be the same because all the leaf nodes of one root will be on the same level.
+
+Also, the root node will either one-key or two-key will be count in one black node in RBTree.
+Thus, every black node visited in RBTree is the same as one node in 23Tree.
+Thus, the root node [1 black / 1 black + 1 red] + the same level child nodes = the same number of black nodes.

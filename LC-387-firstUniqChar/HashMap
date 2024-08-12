@@ -1,0 +1,12 @@
+HashMap - Transfer "key" into "index". [空間換時間] {O(n) [space] : O(1) [time]}
+
+1. Hash Function : Turn every different key into a unique index.
+
+Problem -> Hash Collision : Not every key can be easily turned into a unique index.
+
+- Properties:
+1. Uniformity: if (a == b) hash(a) == hash(b)
+2. Efficiency: Compute easily
+3. Universality: hash value distributes balanced.
+
+2. Operation in HashMap.
